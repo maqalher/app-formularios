@@ -1,0 +1,125 @@
+<h2>Validaciones Reactivas</h2>
+<hr>
+
+<div class="row">
+  <div class="col">
+
+    <form [formGroup]="miFormulario"
+          (ngSubmit)="submitFormulario()"
+          autocomplete="off" >
+
+      <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Nombre</div>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="nombre"
+            placeholder="Nombre del usuario">
+            <span *ngIf="campoNoValido('nombre')"class="form-text text-danger">
+              Debe de ser en formato de nombre y apelldio
+            </span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Email</div>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            placeholder="Email del usuario">
+          <!-- <span *ngIf="emailRequired()"class="form-text text-danger">
+            El correo es obligatorio
+          </span>
+          <span *ngIf="emailFormato()"class="form-text text-danger">
+            El formato del correo es invaldio
+          </span>
+          <span *ngIf="emailTomado()"class="form-text text-danger">
+            El correo ya existe
+          </span> -->
+          <span *ngIf="campoNoValido('email')"class="form-text text-danger">
+            {{emailErrorMsg}}
+          </span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Username</div>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            formControlName="username"
+            placeholder="Username">
+          <span *ngIf="campoNoValido('username')"class="form-text text-danger">
+            El username no puede ser strider
+          </span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Password</div>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password"
+            placeholder="Password">
+            <span *ngIf="campoNoValido('password')"class="form-text text-danger">
+              El password debe de ser mayor a 6 caracteres
+            </span>
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <div class="col-sm-3 col-form-label">Confirmar</div>
+        <div class="col-sm-9">
+          <input
+            type="password"
+            class="form-control"
+            formControlName="password2"
+            placeholder="Confirmar Password">
+            <span *ngIf="campoNoValido('password2')"class="form-text text-danger">
+              Los password deben de ser iguales
+            </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button class="btn btn-primary float-end"
+                  [disabled]="miFormulario.pending"
+                  type="submit">
+            Crear
+          </button>
+        </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<h5>Form Valid: {{ miFormulario.valid }}</h5>
+<h5>Form Satatus: {{ miFormulario.status }}</h5>
+<h5>Form Pending: {{ miFormulario.pending }}</h5>
+
+<h5>Form error:</h5>
+<pre> {{ miFormulario.errors | json }}</pre>
+
+<h5>Nombre:</h5>
+<pre> {{ miFormulario.controls.nombre.errors | json }}</pre>
+
+<h5>Eamil:</h5>
+<pre> {{ miFormulario.controls.email.errors | json }}</pre>
+
+<h5>Username:</h5>
+<pre> {{ miFormulario.controls.username.errors | json }}</pre>
+
+<h5>Password:</h5>
+<pre> {{ miFormulario.controls.password.errors | json }}</pre>
+
+<h5>Confirmar:</h5>
+<pre> {{ miFormulario.controls.password2.errors | json }}</pre>

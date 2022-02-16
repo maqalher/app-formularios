@@ -53,3 +53,29 @@ Formularios Reactivos
       ReactiveRoutingModule,
       ReactiveFormsModule
     ]
+
+crear Modulo y ruta de auth
+  ng g m auth --routing
+
+crear componente registro y login dentro de pages(crear carpeta pages)
+  ng g c auth/registro --skip-Tests -is
+  ng g c auth/login --skip-Tests -is
+
+
+Crear carpeta validator en shared
+  y el archivo validaciones.ts
+
+
+Crear servicio para las validaciones
+  ng g s shared/validator --skip-Tests
+
+
+Agregar a app.module.ts
+  import { HttpClientModule } from '@angular/common/http';
+    imports: [
+
+      HttpClientModule
+    ],
+
+Crear servicio emalValidator
+  ng g s shared/validator/emailValidator --skip-Tests
